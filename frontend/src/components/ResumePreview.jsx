@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../config/config';
 
 const ResumePreview = () => {
   const [resume, setResume] = useState(null);
@@ -11,7 +12,7 @@ const ResumePreview = () => {
   useEffect(() => {
     const fetchResume = async () => {
       try {
-        const response = await axios.get(`/api/resume/${id}`, {
+        const response = await axios.get(`${API_URL}/api/resume/${id}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
@@ -31,7 +32,7 @@ const ResumePreview = () => {
 
   const handleDownloadPDF = async () => {
     try {
-      const response = await axios.get(`/api/resume/${id}/pdf`, {
+      const response = await axios.get(`${API_URL}/api/resume/${id}/pdf`, {
         responseType: 'blob',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

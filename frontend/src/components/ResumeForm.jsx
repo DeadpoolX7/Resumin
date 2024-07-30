@@ -1,14 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-
+import { API_URL } from '../config/config';
 const ResumeForm = () => {
   const { register, handleSubmit, formState:{errors}, } = useForm();
 
   const onSubmit = async (data) => {
     console.log(data)
    try {
-      const response = await axios.post('/api/resume', data, {
+      const response = await axios.post(`${API_URL}/api/resume`, data, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
