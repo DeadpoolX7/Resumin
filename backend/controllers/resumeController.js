@@ -1,5 +1,5 @@
 const Resume = require('../models/resume.model');
-const generatePDF = require('../utils/generatePDF');
+const generatePDF = require('../utils/generatePdf');
 
 exports.createResume = async (req, res) => {
   try {
