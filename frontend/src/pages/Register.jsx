@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../config/config';
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,7 +19,7 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('/api/auth/register', data);
+      const response = await axios.post(`${API_URL}/api/auth/register`, data);
       localStorage.setItem('token', response.data.token);
       navigate('/');
     } catch (error) {

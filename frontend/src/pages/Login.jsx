@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import Toast from '../components/Toast';
+import { API_URL } from '../config/config';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -10,10 +11,9 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [toast, setToast] = useState(null);
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, data);
+      const response = await axios.post(`${API_URL}/api/auth/login`, data);
       localStorage.setItem('token', response.data.token);
       setToast({message:response.data.message, type:'succcess'});
       navigate('/');
